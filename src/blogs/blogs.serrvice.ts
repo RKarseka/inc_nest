@@ -11,7 +11,6 @@ import {
 } from '../helpers/forMongoose';
 
 const blog = {
-  name: 'string',
   description: 'string',
   websiteUrl: 'string',
   createdAt: '2024-03-24T16:30:56.671Z',
