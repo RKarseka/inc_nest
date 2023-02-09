@@ -1,36 +1,36 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
 import { UsersRepository } from './users/users.repository';
 import { BlogsController } from './blogs/blogs.controller';
 import { BlogsRepository } from './blogs/blogs.repository';
 import { BlogsService } from './blogs/blogs.serrvice';
-import { PostsController } from './posts/posts.controller';
 import { PostsService } from './posts/posts.serrvice';
-import { PostsRepository } from './posts/posts.repository';
 import { CommentsController } from './comments/comments.controller';
 import { CommentsService } from './comments/comments.serrvice';
 import { CommentsRepository } from './comments/comments.repository';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
+
+const MONGO_URI =
+  'mongodb+srv://admin:admin@cluster0.batsw9f.mongodb.net/?retryWrites=true&w=majority';
 
 @Module({
-  imports: [],
-  controllers: [
-    AppController,
-    UsersController,
-    BlogsController,
-    PostsController,
-    CommentsController,
+  imports: [
+    MongooseModule.forRoot(MONGO_URI, { dbName: 'forNestDb' }),
+    UsersModule,
+    PostsModule,
   ],
+
+  controllers: [AppController, BlogsController, CommentsController],
+
   providers: [
     AppService,
-    UsersService,
     UsersRepository,
     BlogsRepository,
     BlogsService,
     PostsService,
-    PostsRepository,
     CommentsService,
     CommentsRepository,
   ],

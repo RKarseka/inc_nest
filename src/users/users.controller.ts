@@ -15,7 +15,7 @@ export class UsersController {
   constructor(protected usersService: UsersService) {}
 
   @Get()
-  getUsers(
+  async getUsers(
     @Query('searchLoginTerm') searchLoginTerm: string,
     @Query('searchEmailTerm') searchEmailTerm: string,
     @Query('sortBy') sortBy: string,
@@ -23,7 +23,7 @@ export class UsersController {
     @Query('pageNumber') pageNumber: string,
     @Query('pageSize') pageSize: string,
   ) {
-    return this.usersService.getUsers({
+    return await this.usersService.getUsers({
       searchLoginTerm,
       searchEmailTerm,
       sortBy,
@@ -39,8 +39,8 @@ export class UsersController {
   }
 
   @Post()
-  createUser(@Body() inputModel: CreateUserInputModelType) {
-    return this.usersService.createUser(inputModel);
+  async createUser(@Body() inputModel: CreateUserInputModelType) {
+    return await this.usersService.createUser(inputModel);
   }
   @Delete(':id')
   deleteUser(@Param('id') userid: string) {
