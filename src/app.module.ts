@@ -5,7 +5,6 @@ import { UsersRepository } from './users/users.repository';
 import { BlogsController } from './blogs/blogs.controller';
 import { BlogsRepository } from './blogs/blogs.repository';
 import { BlogsService } from './blogs/blogs.serrvice';
-import { PostsService } from './posts/posts.serrvice';
 import { CommentsController } from './comments/comments.controller';
 import { CommentsService } from './comments/comments.serrvice';
 import { CommentsRepository } from './comments/comments.repository';
@@ -27,10 +26,8 @@ const MONGO_URI =
 
   providers: [
     AppService,
-    UsersRepository,
     BlogsRepository,
     BlogsService,
-    PostsService,
     CommentsService,
     CommentsRepository,
   ],

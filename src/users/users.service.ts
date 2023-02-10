@@ -34,11 +34,13 @@ export class UsersService {
   async createUser(inputModel: CreateUserInputModelType): Promise<User> {
     const createdAt = new Date().toISOString();
     const newUser = { ...inputModel, createdAt };
-    return await this.userModel.create(newUser);
+    const createdUser = await this.userModel.create(newUser);
+    console.log('const newUser = ', createdUser);
+    return createdUser;
   }
 
-  deleteUser(userId: string) {
-    return true;
+  async deleteUser(userId: string) {
+    return await this.userModel.findByIdAndDelete({ _id: userId }).exec();
   }
 
   findUser(term: string) {
