@@ -20,7 +20,6 @@ const user = {
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
-    // protected usersRepository: UsersRepository,
   ) {}
   async getUsers({ searchLoginTerm }: IGetParams): Promise<User[]> {
     // users.filter(
@@ -35,7 +34,6 @@ export class UsersService {
     const createdAt = new Date().toISOString();
     const newUser = { ...inputModel, createdAt };
     const createdUser = await this.userModel.create(newUser);
-    console.log('const newUser = ', createdUser);
     return createdUser;
   }
 

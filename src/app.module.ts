@@ -11,6 +11,7 @@ import { CommentsRepository } from './comments/comments.repository';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
+import { BlogsModule } from './blogs/blogs.module';
 
 const MONGO_URI =
   'mongodb+srv://admin:admin@cluster0.batsw9f.mongodb.net/?retryWrites=true&w=majority';
@@ -20,16 +21,11 @@ const MONGO_URI =
     MongooseModule.forRoot(MONGO_URI, { dbName: 'forNestDb' }),
     UsersModule,
     PostsModule,
+    BlogsModule,
   ],
 
-  controllers: [AppController, BlogsController, CommentsController],
+  controllers: [AppController, CommentsController],
 
-  providers: [
-    AppService,
-    BlogsRepository,
-    BlogsService,
-    CommentsService,
-    CommentsRepository,
-  ],
+  providers: [AppService, CommentsService, CommentsRepository],
 })
 export class AppModule {}

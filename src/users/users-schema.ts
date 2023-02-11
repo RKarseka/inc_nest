@@ -13,6 +13,7 @@ export class User {
 
   @Prop()
   email: string;
+
   @Prop()
   createdAt: string;
 

@@ -60,10 +60,10 @@ describe('integration test for Users', () => {
   describe('create User', () => {
     it('should return', async () => {
       const result = await userService.createUser(newUser);
-      console.log('const result = ', Object.keys(result).length);
       expect(Object.keys(result).length).toBe(4);
       expect(result.email).toBe('e.mail.com');
       expect(result.login).toBe('User1');
+      // console.log('const result = ', result);
     });
   });
 

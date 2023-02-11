@@ -41,7 +41,15 @@ export class PostsService {
     return post;
   }
 
-  createPost(inputModel: CreatePostInputModel) {
+  createPost(createPostDto: CreatePostInputModel) {
+    const createdAt = new Date().toISOString();
+    const extendedLikesInfo = {
+      likesCount: 0,
+      dislikesCount: 0,
+      myStatus: 'None',
+      newestLikes: [],
+    };
+    const newPost = { ...createPostDto, extendedLikesInfo, createdAt };
     return post;
   }
 

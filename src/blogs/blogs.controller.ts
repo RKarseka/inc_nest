@@ -22,13 +22,7 @@ export class BlogsController {
     @Query('pageNumber') pageNumber: string,
     @Query('pageSize') pageSize: string,
   ) {
-    return this.blogsService.getUsers({
-      searchNameTerm,
-      sortBy,
-      sortDirection,
-      pageNumber,
-      pageSize,
-    });
+    return this.blogsService.getBlogs();
   }
 
   @Get(':id')
@@ -37,8 +31,8 @@ export class BlogsController {
   }
 
   @Post()
-  createBlog(@Body() inputModel: CreateBlogInputModel) {
-    return this.blogsService.createBlog(inputModel);
+  async createBlog(@Body() inputModel: CreateBlogInputModel) {
+    return await this.blogsService.createBlog(inputModel);
   }
 
   @Delete(':id')
