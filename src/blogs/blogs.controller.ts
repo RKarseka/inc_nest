@@ -17,12 +17,19 @@ export class BlogsController {
   @Get()
   getBlogs(
     @Query('searchNameTerm') searchNameTerm: string,
-    @Query('sortBy') sortBy: string,
+    @Query('sortBy') sort: string,
     @Query('sortDirection') sortDirection: string,
     @Query('pageNumber') pageNumber: string,
     @Query('pageSize') pageSize: string,
   ) {
-    return this.blogsService.getBlogs();
+    console.log('const sort = ', sort);
+    return this.blogsService.getBlogs({
+      searchNameTerm,
+      sort,
+      sortDirection,
+      pageNumber,
+      pageSize,
+    });
   }
 
   @Get(':id')

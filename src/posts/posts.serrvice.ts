@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IGetParams, paginatedResponse } from '../helpers/types';
+import { paginatedResponse } from '../helpers/types';
 import { CreatePostInputModel, UpdatePostInputModel } from './posts.controller';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -33,7 +33,7 @@ export class PostsService {
 
     // protected postsRepository: PostsRepository
   ) {}
-  getPosts(queryParams: IGetParams) {
+  getPosts(queryParams: any) {
     return { ...paginatedResponse, items: [post] };
   }
 

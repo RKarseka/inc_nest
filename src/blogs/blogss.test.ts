@@ -65,11 +65,11 @@ describe('integration test for Blogs', () => {
       expect(result.name).toBe('Blog name');
       expect(result.description).toBe('Description');
       expect(result.websiteUrl).toBe('https://GM.com');
-      const result2 = await blogService.getBlogs();
+      // const result2 = await blogService.getBlogs();
     });
 
     it('count blogs', async () => {
-      const result = await blogService.getBlogs();
+      // const result = await blogService.getBlogs();
     });
   });
 

@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { responsePaginated } from '../helpers/types';
+import { ISearchFields, responsePaginated } from '../helpers/types';
 import { CreateBlogInputModel, UpdateBlogInputModel } from './blogs.controller';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Blog, BlogDocument } from './blog.schema';
+import { ParsedQs } from 'qs';
+import {
+  getAllFromCollectionPaginated,
+  makeGetAllParams,
+} from '../helpers/forMongoose';
 
 const blog = {
   id: 'string',
@@ -18,15 +23,18 @@ export class BlogsService {
   constructor(
     @InjectModel(Blog.name) private readonly blogModel: Model<BlogDocument>,
   ) {}
-  async getBlogs(/*queryParams: IGetParams*/): Promise<Blog[]> {
-    return await this.blogModel
-      .find()
-      .exec()
-      .then((blogs: Blog[]) => {
-        return blogs.map((blog: BlogDocument) =>
-          blog.toObject({ versionKey: false }),
-        );
-      });
+  async getBlogs(query: ParsedQs) {
+    const searchFields: Array<ISearchFields<Blog>> = [];
+    const params = makeGetAllParams(query, searchFields);
+    return await getAllFromCollectionPaginated<Blog>(params, this.blogModel);
+    // return await this.blogModel
+    //   .find(filter)
+    //   .exec()
+    //   .then((blogs: Blog[]) => {
+    //     return blogs.map((blog: BlogDocument) =>
+    //       blog.toObject({ versionKey: false }),
+    //     );
+    //   });
   }
 
   async getBlog(blogId: string) {
