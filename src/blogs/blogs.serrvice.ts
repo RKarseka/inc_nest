@@ -11,7 +11,6 @@ import {
 } from '../helpers/forMongoose';
 
 const blog = {
-  id: 'string',
   name: 'string',
   description: 'string',
   websiteUrl: 'string',
